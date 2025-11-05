@@ -1,0 +1,54 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:TodoList.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="TodoList.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    
+    
+    <Grid ColumnDefinitions="200,*">
+        <!-- Side bar -->
+        <StackPanel Grid.Column="0">
+            <!-- Add Category button -->
+            <Button Content="+"
+                    Command="{Binding AddCategoryCommand}"/>
+            <!-- Area that show Categories -->
+             <ScrollViewer >
+                <ItemsControl ItemsSource="{Binding Categories}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="vm:CategoryViewModel">
+                            <Grid ColumnDefinitions="Auto, *">
+                                <Ellipse 
+                                    Width="10"
+                                    Height="10"
+                                    Fill="{Binding ColorHex}" />
+                            
+                                <TextBlock Grid.Column="1" Text="{Binding Name}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </StackPanel>
+        
+        
+        <!-- Dialog window -->
+        <Grid Name="DialogOverlay"
+              Grid.Column="0" Grid.ColumnSpan="2"
+              IsVisible="{Binding  CurrentDialog.IsDialogOpen }">
+            
+            <Border Background="Black" Opacity="0.5"/>
+            <ContentControl
+                Content="{Binding CurrentDialog}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                />
+        </Grid>
+    </Grid>
+</Window>

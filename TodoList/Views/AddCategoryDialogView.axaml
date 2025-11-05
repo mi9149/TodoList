@@ -1,0 +1,71 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:TodoList.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        MinWidth="300" 
+        x:Class="TodoList.Views.AddCategoryDialogView"
+        x:DataType="vm:AddCategoryDialogViewModel"
+        >
+    
+        <Design.DataContext>
+                <vm:AddCategoryDialogViewModel/>
+        </Design.DataContext>
+     
+        <Border
+               
+                Background="{DynamicResource PrimaryBackgroundColor1}"
+                BorderThickness="{DynamicResource PrimaryBorderThickness}"
+                CornerRadius="20"
+                ClipToBounds="False"
+                Margin="10">
+                
+                <Border.Effect>
+                        <DropShadowEffect Color="{DynamicResource PrimaryBackgroundColor2}"
+                                          />
+                </Border.Effect>
+                
+                
+                
+                <StackPanel Spacing="20">
+                        <Grid RowDefinitions="Auto, *" ColumnDefinitions=" Auto, *">
+                                
+                                <TextBlock Grid.Row="0" Grid.Column="0" 
+                                           Text="이름 : " 
+                                           Margin="20"/>
+                                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Title}" 
+                                         Margin="20"/>
+                                
+
+                                <TextBlock Grid.Row="1" Grid.Column="0" 
+                                           Text="색상 : " 
+                                           Margin="20, 0"/>
+                                <!-- IsCheckedChanged="OnColorSelected" -->
+                                <StackPanel Grid.Row="1" Grid.Column="1">
+                                        <RadioButton GroupName="CategoryColor" Content="Color1" Foreground="#EB4E3D"
+                                                     Tag="#EB4E3D"
+                                                      Checked="OnColorSelected"/>
+                                        <RadioButton GroupName="CategoryColor" Content="Color2" Foreground="#5DC466"
+                                                     Tag="#5DC466"
+                                                     Checked="OnColorSelected"/>
+                                        <RadioButton GroupName="CategoryColor" Content="Color3" Foreground="#3478F6"
+                                                     Tag="#3478F6"
+                                                     Checked="OnColorSelected"/>
+                                        
+                                </StackPanel>
+                        </Grid>
+           
+                        
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="20">
+                        <Button Content="{Binding CancelText}"
+                                Command="{Binding CancelCommand}"/>
+                        <Button Content="{Binding ConfirmText}"
+                                Command="{Binding ConfirmCommand}"/>
+                </StackPanel>
+                        
+
+                </StackPanel>
+                
+        </Border>
+</UserControl>  
