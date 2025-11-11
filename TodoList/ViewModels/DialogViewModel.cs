@@ -11,11 +11,12 @@ public partial class DialogViewModel<TResult>: ViewModelBase
     private bool _isDialogOpen;
 
     protected TaskCompletionSource<TResult?> closeTask = new(TaskCreationOptions.RunContinuationsAsynchronously);
+   // protected TaskCompletionSource<TResult?> closeTask = new TaskCompletionSource<TResult?>();
     
     /// <summary>
     /// Dialog 창 닫힐때 까지 기다림
     /// </summary>
-    public async Task<TResult?> WaitAsnyc()
+    public async Task<TResult?> WaitAsync()
     {
        return await closeTask.Task;
     } 

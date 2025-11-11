@@ -12,7 +12,8 @@
     </Design.DataContext>
     
     
-    <Grid ColumnDefinitions="200,*">
+    <Grid ColumnDefinitions="200,*"
+          ShowGridLines="True">
         <!-- Side bar -->
         <StackPanel Grid.Column="0">
             <!-- Add Category button -->
@@ -29,7 +30,7 @@
                                     Height="10"
                                     Fill="{Binding ColorHex}" />
                             
-                                <TextBlock Grid.Column="1" Text="{Binding Name}"/>
+                                <TextBlock Grid.Column="1" Text="{Binding Title}"/>
                             </Grid>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
@@ -37,6 +38,21 @@
             </ScrollViewer>
         </StackPanel>
         
+        <StackPanel Grid.Column="1">
+            <!-- View Mode Button -->
+            <StackPanel Orientation="Horizontal" Spacing="10">
+                <Button Content="Kanban"/>
+                <Button Content="List"/>
+            </StackPanel>
+            
+            <!-- Category Name -->
+            <Label Content="[Category Name]"/>
+            
+            <!-- Item View -->
+            <ContentControl
+                Content=""/>
+            
+        </StackPanel>
         
         <!-- Dialog window -->
         <Grid Name="DialogOverlay"
