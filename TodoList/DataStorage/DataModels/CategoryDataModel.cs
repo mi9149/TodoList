@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore.Storage.Json;
 
 namespace TodoList.DataStorage.DataModels;
 
@@ -14,6 +16,8 @@ public class CategoryDataModel : IEnumerable
         
     [MaxLength(10)]
     public string ColorHex { get; set; } = "#0000FF";
+
+    public List<TodoItemsDataModel> TodoItems { get; set; } = new();
 
     public IEnumerator GetEnumerator()
     {

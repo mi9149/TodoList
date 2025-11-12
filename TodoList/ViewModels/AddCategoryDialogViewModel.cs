@@ -41,9 +41,6 @@ public partial class AddCategoryDialogViewModel : DialogViewModel<CategoryDataMo
         _factory = factory;
         
     }
-    
-    
-    
 
     private bool CanAddCategory() => !string.IsNullOrWhiteSpace(Title);
     

@@ -34,8 +34,18 @@ public class ApplicationDbContext : DbContext
         //ID 속성을 Primary Key로 지정
         modelBuilder.Entity<TodoItemsDataModel>()
             .HasKey(f => f.Id);
+        
+        //외래키 지정
+        modelBuilder.Entity<TodoItemsDataModel>()
+            .HasOne(t => t.Category) 
+            .WithMany(c => c.TodoItems)
+            .HasForeignKey(t => t.CategoryID)
+            .OnDelete(DeleteBehavior.Cascade);
 
+
+        //ID 속성을 Primary Key로 지정
         modelBuilder.Entity<CategoryDataModel>()
             .HasKey(f => f.Id);
+
     }
 }

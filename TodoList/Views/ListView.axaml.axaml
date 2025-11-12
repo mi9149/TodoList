@@ -1,0 +1,59 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:TodoList.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="TodoList.Views.ListView"
+             x:DataType="vm:ListViewModel">
+    
+    
+    <Design.DataContext>
+        <vm:ListViewModel/>
+    </Design.DataContext>
+    
+    <Grid RowDefinitions=" *, Auto"
+          x:Name = "Root">
+        
+        <ScrollViewer Grid.Row="0">
+            <ItemsControl ItemsSource ="{Binding TodoItems}">
+                
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="vm:ListItemViewModel">
+                        <Grid ColumnDefinitions="*, Auto">
+                            <CheckBox Content="{Binding Title}"
+                                      IsChecked="{Binding IsChecked}"/>
+                            
+                            <Button Grid.Column="1" Command="{Binding #Root.((vm:ListViewModel)DataContext).RemoveTodoItemCommand }"
+                                    CommandParameter="{Binding .}">
+                                <PathIcon Data="{DynamicResource DeleteIconData}" Foreground="IndianRed" Height="15"/>
+                            </Button>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                
+                
+            </ItemsControl>
+        </ScrollViewer>
+        <TextBox Grid.Row="1"
+                 Text="{Binding #Root.((vm:ListViewModel)DataContext).NewTodoItemTitle}"
+                 Watermark="Add a new Todo">
+               
+            <TextBox.InnerRightContent>
+                <Button Command="{Binding #Root.((vm:ListViewModel)DataContext).AddTodoItemCommand}">
+                    <PathIcon Data="{DynamicResource AcceptIconData}" Foreground="LightSeaGreen" />
+                </Button>
+                        
+            </TextBox.InnerRightContent>
+                
+            <TextBox.KeyBindings>
+                <KeyBinding Command="{Binding #Root.((vm:ListViewModel)DataContext).AddTodoItemCommand}" Gesture="Enter" />
+                    
+            </TextBox.KeyBindings>
+            </TextBox>
+    </Grid>
+    
+    
+    
+    
+</UserControl>

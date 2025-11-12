@@ -16,18 +16,45 @@ public class DatabaseService(ApplicationDbContext context) : IDisposable
         _context.Dispose();
     }
 
-    public TodoItemsDataModel GetTodoItems()
+    public List<TodoItemsDataModel> GetTodoItems()
     {
         var todoItems = _context.TodoItems.FirstOrDefault();
 
-        if (todoItems != null) return todoItems;
-
-        todoItems = new TodoItemsDataModel
+        if (todoItems != null)
+        { }
+        else
         {
-            Title = "Todo1"
-        };
+            todoItems = new TodoItemsDataModel
+            {
+                Title = "Untitled1",
+            };
+            
+            SaveTodoItems(todoItems);
+        }
 
-        SaveTodoItems(todoItems);
+        return _context.TodoItems.ToList<TodoItemsDataModel>();
+    }
+    public List<TodoItemsDataModel> GetTodoItems(string categoryId)
+    {
+        var todoItems = _context.TodoItems
+            .Where(t => t.CategoryID ==categoryId)
+            .ToList();
+
+        if (todoItems.Count == 0)
+        {
+            var newItem = new TodoItemsDataModel
+            {
+                Title = "Untitled1",
+                CategoryID = categoryId
+
+            };
+            _context.TodoItems.Add(newItem);
+            _context.SaveChanges();
+            
+            todoItems = _context.TodoItems
+                .Where(t => t.CategoryID == categoryId)
+                .ToList();
+        }
         return todoItems;
     }
 
@@ -50,17 +77,17 @@ public class DatabaseService(ApplicationDbContext context) : IDisposable
     }
 
 
-    public void SaveTodoItems(TodoItemsDataModel todoItems)
+    public void SaveTodoItems(TodoItemsDataModel todoItem)
     {
-        if(_context.TodoItems.Any(f => f.Id == todoItems.Id))
-            _context.TodoItems.Update(todoItems);
+        if(_context.TodoItems.Any(f => f.Id == todoItem.Id))
+            _context.TodoItems.Update(todoItem);
         else
         {
-            _context.TodoItems.RemoveRange(_context.TodoItems);
-            _context.TodoItems.Add(todoItems);
+            //_context.TodoItems.RemoveRange(_context.TodoItems);
+            _context.TodoItems.Add(todoItem);
         }
         
-        //Commit
+        //Commitm
         _context.SaveChanges();
     }
     
@@ -75,6 +102,14 @@ public class DatabaseService(ApplicationDbContext context) : IDisposable
         }
         
         //Commit
+        _context.SaveChanges();
+    }
+
+    public void RemoveTodoItem(TodoItemsDataModel todoItems)
+    {
+        if(_context.TodoItems.Any(f => f.Id == todoItems.Id))
+            _context.TodoItems.Remove(todoItems);
+        
         _context.SaveChanges();
     }
 

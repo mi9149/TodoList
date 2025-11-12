@@ -14,6 +14,7 @@
 
     <ItemGroup>
         <PackageReference Include="Avalonia" Version="11.3.6"/>
+        <PackageReference Include="Avalonia.Browser" Version="11.3.6" />
         <PackageReference Include="Avalonia.Desktop" Version="11.3.6"/>
         <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.6"/>
         <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.6"/>
@@ -37,6 +38,9 @@
     <ItemGroup>
       <Compile Update="Views\AddCategoryDialogView.axaml.cs">
         <DependentUpon>AddCategoryDialogView.axaml.axaml</DependentUpon>
+      </Compile>
+      <Compile Update="Views\ListView.axaml.cs">
+        <DependentUpon>ListView.axaml.axaml</DependentUpon>
       </Compile>
     </ItemGroup>
 

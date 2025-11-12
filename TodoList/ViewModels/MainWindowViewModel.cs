@@ -12,38 +12,57 @@ namespace TodoList.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 { 
+    //DB
     private readonly DatabaseFactory _databaseFactory;
-    private readonly DatabaseService _dbContext;
+
+    
+    //Categories
     public ObservableCollection<CategoryViewModel> Categories { get; } = new ObservableCollection<CategoryViewModel>();
+    
+    [ObservableProperty]
+    private CategoryViewModel? _selectedCategory;
+    
 
     [ObservableProperty] 
     private DialogViewModel<CategoryDataModel> _currentDialog = new AddCategoryDialogViewModel();
 
+    //Pages(list, calendar, Kanbanborad)
+    [ObservableProperty] private ViewModelBase _currentPage;
+
+    private readonly ListViewModel _listViewPage;
+
     public MainWindowViewModel()
     {
         _databaseFactory = new DatabaseFactory(() => new DatabaseService(new ApplicationDbContext()));
-        _dbContext = _databaseFactory.GetDatabaseService();
-        _dbContext.ApplyMigration();
+        
+        using var dbContext = _databaseFactory.GetDatabaseService();
+        dbContext.ApplyMigration();
+        Categories.Clear();
         LoadCategories();
+        SelectedCategory = Categories[0];
+        
+        _listViewPage = new ListViewModel(SelectedCategory.GetCategory());
+        CurrentPage = _listViewPage;
     }
 
     private void LoadCategories()
     {
         
-        var list = _dbContext.GetCategories();
+        using var dbContext = _databaseFactory.GetDatabaseService();
+        var list = dbContext.GetCategories();
         Categories.Clear();
         foreach (var c in list)
         {
             Categories.Add(new CategoryViewModel
             {
+                Id = c.Id,
                 Title = c.Title,
                 ColorHex = c.ColorHex
             });
         }
+      
     }
     
-
-
     [RelayCommand]
     public async Task AddCategory()
     {
@@ -56,5 +75,13 @@ public partial class MainWindowViewModel : ViewModelBase
         }
 
         LoadCategories();
+    }
+
+    partial void OnSelectedCategoryChanged(CategoryViewModel? value)
+    {
+        
+        if (value is not null)
+            CurrentPage = new ListViewModel(value.GetCategory());
+
     }
 }

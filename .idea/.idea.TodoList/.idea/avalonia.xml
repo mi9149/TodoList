@@ -5,6 +5,8 @@
       <map>
         <entry key="TodoList/App.axaml" value="TodoList/TodoList.csproj" />
         <entry key="TodoList/Views/AddCategoryDialogView.axaml" value="TodoList/TodoList.csproj" />
+        <entry key="TodoList/Views/ListView.axaml" value="TodoList/TodoList.csproj" />
+        <entry key="TodoList/Views/ListView.axaml.axaml" value="TodoList/TodoList.csproj" />
         <entry key="TodoList/Views/MainWindow.axaml" value="TodoList/TodoList.csproj" />
       </map>
     </option>

@@ -12,6 +12,7 @@
     </Design.DataContext>
     
     
+    
     <Grid ColumnDefinitions="200,*"
           ShowGridLines="True">
         <!-- Side bar -->
@@ -20,9 +21,13 @@
             <Button Content="+"
                     Command="{Binding AddCategoryCommand}"/>
             <!-- Area that show Categories -->
-             <ScrollViewer >
-                <ItemsControl ItemsSource="{Binding Categories}">
-                    <ItemsControl.ItemTemplate>
+             <ListBox 
+                 ItemsSource = "{Binding Categories}"
+                 SelectedItem = "{Binding SelectedCategory,Mode=TwoWay}"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto">
+               
+                    <ListBox.ItemTemplate>
                         <DataTemplate DataType="vm:CategoryViewModel">
                             <Grid ColumnDefinitions="Auto, *">
                                 <Ellipse 
@@ -33,9 +38,9 @@
                                 <TextBlock Grid.Column="1" Text="{Binding Title}"/>
                             </Grid>
                         </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
+                    </ListBox.ItemTemplate>
+               
+            </ListBox>
         </StackPanel>
         
         <StackPanel Grid.Column="1">
@@ -46,11 +51,10 @@
             </StackPanel>
             
             <!-- Category Name -->
-            <Label Content="[Category Name]"/>
+            <Label VerticalAlignment="stretch" Content="{Binding SelectedCategory.Title}"/>
             
             <!-- Item View -->
-            <ContentControl
-                Content=""/>
+            <ContentControl VerticalAlignment="Stretch" Content="{Binding CurrentPage}"/>
             
         </StackPanel>
         
