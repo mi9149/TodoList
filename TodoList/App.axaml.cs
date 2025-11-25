@@ -8,6 +8,7 @@ using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.DependencyInjection;
 using TodoList.DataStorage;
+using TodoList.Dialog;
 using TodoList.ViewModels;
 using TodoList.Views;
 
@@ -29,6 +30,8 @@ public partial class App : Application
         collection.AddTransient<DatabaseService>();
         collection.AddSingleton<Func<DatabaseService>>(serviceProvider =>serviceProvider.GetRequiredService<DatabaseService>);
         collection.AddSingleton<DatabaseFactory>();
+
+        collection.AddSingleton<DialogService>();
 
         var service = collection.BuildServiceProvider();
         

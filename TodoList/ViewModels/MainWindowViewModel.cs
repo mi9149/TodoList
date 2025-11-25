@@ -6,14 +6,16 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.EntityFrameworkCore;
 using TodoList.DataStorage;
 using TodoList.DataStorage.DataModels;
+using TodoList.Dialog;
 
 
 namespace TodoList.ViewModels;
 
-public partial class MainWindowViewModel : ViewModelBase
+public partial class MainWindowViewModel : ViewModelBase, IDialogProvider
 { 
     //DB
     private readonly DatabaseFactory _databaseFactory;
+    private readonly DialogService _dialogService;
 
     
     //Categories
@@ -21,20 +23,21 @@ public partial class MainWindowViewModel : ViewModelBase
     
     [ObservableProperty]
     private CategoryViewModel? _selectedCategory;
-    
 
-    [ObservableProperty] 
-    private DialogViewModel<CategoryDataModel> _currentDialog = new AddCategoryDialogViewModel();
+    //Dialog
+    [ObservableProperty] private DialogViewModel _dialog;
 
     //Pages(list, calendar, Kanbanborad)
     [ObservableProperty] private ViewModelBase _currentPage;
 
     private readonly ListViewModel _listViewPage;
 
-    public MainWindowViewModel()
+    public MainWindowViewModel(DatabaseFactory databaseFactory, DialogService dialogService )
     {
-        _databaseFactory = new DatabaseFactory(() => new DatabaseService(new ApplicationDbContext()));
+        _databaseFactory = databaseFactory;
+        _dialogService = dialogService;
         
+       
         using var dbContext = _databaseFactory.GetDatabaseService();
         dbContext.ApplyMigration();
         Categories.Clear();
@@ -44,6 +47,7 @@ public partial class MainWindowViewModel : ViewModelBase
         _listViewPage = new ListViewModel(SelectedCategory.GetCategory());
         CurrentPage = _listViewPage;
     }
+    
 
     private void LoadCategories()
     {
@@ -64,15 +68,17 @@ public partial class MainWindowViewModel : ViewModelBase
     }
     
     [RelayCommand]
-    public async Task AddCategory()
+    private async Task AddCategory()
     {
-        CurrentDialog.Show();
-        var result = await CurrentDialog.WaitAsync();
+        Dialog = new AddCategoryDialogViewModel(_databaseFactory);
+        await _dialogService.ShowDialog(this, Dialog);
+        
+      //  await Dialog.WaitAsync();
 
-        if (result is not null)
-        {
-            Categories.Add(new CategoryViewModel());
-        }
+        // if (result is not null)
+        // {
+        //     Categories.Add(new CategoryViewModel());
+        // }
 
         LoadCategories();
     }
@@ -84,4 +90,6 @@ public partial class MainWindowViewModel : ViewModelBase
             CurrentPage = new ListViewModel(value.GetCategory());
 
     }
+
+    
 }

@@ -5,7 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using TodoList.DataStorage;
 using TodoList.DataStorage.DataModels;
-using TodoList.Models;
+
 
 namespace TodoList.ViewModels;
 
@@ -14,10 +14,8 @@ namespace TodoList.ViewModels;
 /// <summary>
 /// Category 추가를 위한 Dialog 창 ('+' 버튼 클릭시 뜨는 창)
 /// </summary>
-public partial class AddCategoryDialogViewModel : DialogViewModel<CategoryDataModel>
+public partial class AddCategoryDialogViewModel(DatabaseFactory databaseFactory) : DialogViewModel
 {
-    private readonly DatabaseFactory _factory;
-    
     [ObservableProperty] 
     [NotifyCanExecuteChangedFor(nameof(ConfirmCommand))]
     private string _title = string.Empty;
@@ -29,29 +27,21 @@ public partial class AddCategoryDialogViewModel : DialogViewModel<CategoryDataMo
     
 
     [ObservableProperty] private bool _confirmed;
-
-
-    //private string? _newCategoryName;
-
-    public AddCategoryDialogViewModel() : this(new DatabaseFactory(() => new DatabaseService(new ApplicationDbContext())))
-    { }
-
-    public AddCategoryDialogViewModel(DatabaseFactory factory)
-    {
-        _factory = factory;
-        
-    }
+    // private readonly DatabaseFactory _databaseFactory = databaseFactory;
+    // private string? _newCategoryName;
+    
+    
 
     private bool CanAddCategory() => !string.IsNullOrWhiteSpace(Title);
     
     [RelayCommand(CanExecute = nameof(CanAddCategory))]
     public void Confirm()
     {
-        using var dbContext = _factory.GetDatabaseService();
+        using var dbContext = databaseFactory.GetDatabaseService();
         var newCategory = ToDataModel();
         dbContext.SaveCategories(newCategory);
         Confirmed = true;
-        Close(newCategory);
+        Close();
     }
     
     
@@ -59,7 +49,7 @@ public partial class AddCategoryDialogViewModel : DialogViewModel<CategoryDataMo
     public void Cancel()
     {
         Confirmed = false;
-        Close(null);
+        Close();
     }
     
     private CategoryDataModel ToDataModel() => new()
@@ -67,10 +57,5 @@ public partial class AddCategoryDialogViewModel : DialogViewModel<CategoryDataMo
         Title = Title,
         ColorHex = ColorHex
     };
-
     
-    
-    
-
-
 }

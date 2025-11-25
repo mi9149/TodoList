@@ -4,21 +4,22 @@ using TodoList.Models;
 
 namespace TodoList.ViewModels;
 
-public partial class DialogViewModel<TResult>: ViewModelBase
+public partial class DialogViewModel: ViewModelBase
 {
     //UI와 Binding
     [ObservableProperty]
     private bool _isDialogOpen;
-
-    protected TaskCompletionSource<TResult?> closeTask = new(TaskCreationOptions.RunContinuationsAsynchronously);
+    
+    protected TaskCompletionSource CloseTask = new(TaskCreationOptions.RunContinuationsAsynchronously);
    // protected TaskCompletionSource<TResult?> closeTask = new TaskCompletionSource<TResult?>();
     
     /// <summary>
     /// Dialog 창 닫힐때 까지 기다림
     /// </summary>
-    public async Task<TResult?> WaitAsync()
+    public async Task WaitAsync()
     {
-       return await closeTask.Task;
+        await CloseTask.Task;
+        
     } 
     
     /// <summary>
@@ -26,9 +27,9 @@ public partial class DialogViewModel<TResult>: ViewModelBase
     /// </summary>
     public void Show()
     {
-        if (closeTask.Task.IsCompleted)
+        if (CloseTask.Task.IsCompleted)
         {
-            closeTask = new (TaskCreationOptions.RunContinuationsAsynchronously);
+            CloseTask = new (TaskCreationOptions.RunContinuationsAsynchronously);
         }
         IsDialogOpen = true;
     }
@@ -36,11 +37,11 @@ public partial class DialogViewModel<TResult>: ViewModelBase
     /// <summary>
     /// Dialog 창 닫힘
     /// </summary>
-    public void Close(TResult? result)
+    public void Close()
     {
         IsDialogOpen = false;
         
-        closeTask.TrySetResult(result);
+        CloseTask.TrySetResult();
     }
     
     

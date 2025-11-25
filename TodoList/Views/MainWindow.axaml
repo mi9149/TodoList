@@ -51,7 +51,7 @@
             </StackPanel>
             
             <!-- Category Name -->
-            <Label VerticalAlignment="stretch" Content="{Binding SelectedCategory.Title}"/>
+            <Label VerticalAlignment="Stretch" Content="{Binding SelectedCategory.Title}"/>
             
             <!-- Item View -->
             <ContentControl VerticalAlignment="Stretch" Content="{Binding CurrentPage}"/>
@@ -61,11 +61,11 @@
         <!-- Dialog window -->
         <Grid Name="DialogOverlay"
               Grid.Column="0" Grid.ColumnSpan="2"
-              IsVisible="{Binding  CurrentDialog.IsDialogOpen }">
+              IsVisible="{Binding  Dialog.IsDialogOpen, FallbackValue=False, TargetNullValue=False }">
             
             <Border Background="Black" Opacity="0.5"/>
             <ContentControl
-                Content="{Binding CurrentDialog}"
+                Content="{Binding Dialog}"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 />
