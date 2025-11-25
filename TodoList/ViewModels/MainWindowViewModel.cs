@@ -44,7 +44,7 @@ public partial class MainWindowViewModel : ViewModelBase, IDialogProvider
         LoadCategories();
         SelectedCategory = Categories[0];
         
-        _listViewPage = new ListViewModel(SelectedCategory.GetCategory());
+        _listViewPage = new ListViewModel(databaseFactory, SelectedCategory.GetCategory());
         CurrentPage = _listViewPage;
     }
     

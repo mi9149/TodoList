@@ -51,12 +51,7 @@ public partial class ListViewModel:ViewModelBase
         TodoItems.Clear();
         foreach (var c in list)
         {
-            TodoItems.Add(new ListItemViewModel
-            {
-                Title = c.Title,
-                IsChecked = c.Completed,
-                CategoryId = c.CategoryID
-            });
+            TodoItems.Add(new ListItemViewModel(c));
         }
 
     }
