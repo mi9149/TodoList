@@ -14,14 +14,14 @@
     
     <Grid RowDefinitions=" *, Auto"
           x:Name = "Root">
-        
-        <ScrollViewer Grid.Row="0">
+        <ScrollViewer Grid.Row="0" >
             <ItemsControl ItemsSource ="{Binding TodoItems}">
                 
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="vm:ListItemViewModel">
                         <Grid ColumnDefinitions="*, Auto">
-                            <CheckBox Content="{Binding Title}"
+                            <CheckBox Content="{Binding Title}" 
+                                      FontFamily="{DynamicResource Freesentation-4}"
                                       IsChecked="{Binding IsChecked}"/>
                             
                             <Button Grid.Column="1" Command="{Binding #Root.((vm:ListViewModel)DataContext).RemoveTodoItemCommand }"
@@ -31,10 +31,9 @@
                         </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
-                
-                
             </ItemsControl>
         </ScrollViewer>
+   
         <TextBox Grid.Row="1"
                  Text="{Binding #Root.((vm:ListViewModel)DataContext).NewTodoItemTitle}"
                  Watermark="Add a new Todo">

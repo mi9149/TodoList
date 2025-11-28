@@ -32,6 +32,12 @@ public partial class MainWindowViewModel : ViewModelBase, IDialogProvider
 
     private readonly ListViewModel _listViewPage;
 
+    public MainWindowViewModel()
+    {
+        _databaseFactory = new DatabaseFactory(()=>new DatabaseService(new ApplicationDbContext()));
+        _dialogService = new DialogService();
+    }
+
     public MainWindowViewModel(DatabaseFactory databaseFactory, DialogService dialogService )
     {
         _databaseFactory = databaseFactory;

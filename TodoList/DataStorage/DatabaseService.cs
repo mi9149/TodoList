@@ -16,43 +16,39 @@ public class DatabaseService(ApplicationDbContext context) : IDisposable
         _context.Dispose();
     }
 
-    public List<TodoItemsDataModel> GetTodoItems()
-    {
-        var todoItems = _context.TodoItems.FirstOrDefault();
-
-        if (todoItems != null)
-        { }
-        else
-        {
-            todoItems = new TodoItemsDataModel
-            {
-                Title = "Untitled1",
-            };
-            
-            SaveTodoItems(todoItems);
-        }
-
-        return _context.TodoItems.ToList<TodoItemsDataModel>();
-    }
+    // public List<TodoItemsDataModel> GetTodoItems()
+    // {
+    //     var todoItems = _context.TodoItems.FirstOrDefault();
+    //
+    //     if (todoItems != null)
+    //     { }
+    //     else
+    //     {
+    //         todoItems = new TodoItemsDataModel
+    //         {
+    //             Title = "Untitled1",
+    //         };
+    //         
+    //         SaveTodoItems(todoItems);
+    //     }
+    //
+    //     return _context.TodoItems.ToList<TodoItemsDataModel>();
+    // }
+    
     public List<TodoItemsDataModel> GetTodoItems(string categoryId)
     {
         var todoItems = _context.TodoItems
-            .Where(t => t.CategoryID ==categoryId)
+            .Where(t => t.CategoryId ==categoryId)
             .ToList();
 
         if (todoItems.Count == 0)
         {
-            var newItem = new TodoItemsDataModel
-            {
-                Title = "Untitled1",
-                CategoryID = categoryId
-
-            };
+            var newItem = new TodoItemsDataModel(title: "Untitled1", categoryId: categoryId);
             _context.TodoItems.Add(newItem);
             _context.SaveChanges();
             
             todoItems = _context.TodoItems
-                .Where(t => t.CategoryID == categoryId)
+                .Where(t => t.CategoryId == categoryId)
                 .ToList();
         }
         return todoItems;

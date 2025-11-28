@@ -25,7 +25,7 @@ public partial class ListItemViewModel:ViewModelBase
         Id = todoItem.Id;
         Title = todoItem.Title;
         IsChecked = todoItem.Completed;
-        CategoryId = todoItem.CategoryID;
+        CategoryId = todoItem.CategoryId;
     }
 
     public TodoItemsDataModel GetTodoItem()
@@ -35,7 +35,7 @@ public partial class ListItemViewModel:ViewModelBase
             Id = Id,
             Title = this.Title,
             Completed = this.IsChecked,
-            CategoryID = this.CategoryId
+            CategoryId = this.CategoryId
         };
     }
         

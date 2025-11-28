@@ -20,6 +20,7 @@
             <!-- Add Category button -->
             <Button Content="+"
                     Command="{Binding AddCategoryCommand}"/>
+            
             <!-- Area that show Categories -->
              <ListBox 
                  ItemsSource = "{Binding Categories}"
@@ -27,15 +28,21 @@
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  ScrollViewer.VerticalScrollBarVisibility="Auto">
                
-                    <ListBox.ItemTemplate>
-                        <DataTemplate DataType="vm:CategoryViewModel">
+                    <ListBox.ItemTemplate >
+                        <DataTemplate DataType="vm:CategoryViewModel"  >
                             <Grid ColumnDefinitions="Auto, *">
+                                <!-- Category Color -->
                                 <Ellipse 
-                                    Width="10"
-                                    Height="10"
+                                    Width="13"
+                                    Height="13"
                                     Fill="{Binding ColorHex}" />
                             
-                                <TextBlock Grid.Column="1" Text="{Binding Title}"/>
+                                <!-- Show category name -->
+                                <Border  Grid.Column="1"
+                                         Classes="Category-title"
+                                         CornerRadius="4">
+                                    <TextBlock   Text="{Binding Title}"/>
+                                </Border>
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>

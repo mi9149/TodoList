@@ -1,0 +1,44 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:ClassModifier="internal">
+    
+        <Design.PreviewWith>
+            <Border>
+                <ListBox>
+                    <ListBoxItem>Item 1</ListBoxItem>
+                    <ListBoxItem>Item 2 long</ListBoxItem>
+                    <ListBoxItem IsSelected="True">Item 3</ListBoxItem>
+                    <ListBoxItem IsEnabled="False">Item 4</ListBoxItem>
+                    <ListBoxItem IsSelected="True" IsEnabled="False">Item 5</ListBoxItem>
+                </ListBox>
+            </Border>
+        </Design.PreviewWith>
+    
+    <ControlTheme x:Key="{x:Type ListBoxItem}" TargetType="ListBoxItem">
+        <Setter Property="Template">
+            <ControlTemplate>
+                    <ContentPresenter x:Name="PARTContentPresenter"
+                                      Background="{Binding $parent[ListBoxItem].Background}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      Content="{TemplateBinding Content}"
+                                      Padding ="5"
+                                      Margin ="0"/>
+            </ControlTemplate>
+        </Setter>
+        
+        <!--  PointerOver state  -->
+        <Style Selector="^:pointerover">
+            
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryHoverBackground}" />
+            
+        </Style>
+        
+        
+        <!--  Selected state  -->
+        <Style Selector="^:selected">
+            <Setter Property="Background" Value="{DynamicResource PrimaryHoverBackground}" />
+        </Style>
+        
+    </ControlTheme>
+    
+</ResourceDictionary>

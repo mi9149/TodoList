@@ -10,6 +10,11 @@
 
     <ItemGroup>
         <AvaloniaResource Include="Assets\**"/>
+        <None Remove="Font\BlackHanSans-Regular.ttf" />
+        <None Remove="Font\consola.ttf" />
+        <None Remove="Font\Freesentation-4Regular.ttf" />
+        <None Remove="Font\Freesentation-5Medium.ttf" />
+        <None Remove="Font\Freesentation-6SemiBold.ttf" />
     </ItemGroup>
 
     <ItemGroup>
@@ -42,9 +47,5 @@
       <Compile Update="Views\ListView.axaml.cs">
         <DependentUpon>ListView.axaml.axaml</DependentUpon>
       </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Controls\" />
     </ItemGroup>
 </Project>
