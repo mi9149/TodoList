@@ -29,6 +29,7 @@
         <Thickness x:Key="PrimaryBorderThickness">2</Thickness>
         
         <SolidColorBrush x:Key="PrimaryBackgroundColor1">#FBFBFB</SolidColorBrush>
+        <SolidColorBrush x:Key="PrimaryBackgroundColor2">#F3F3F3</SolidColorBrush>
         <SolidColorBrush x:Key="PrimaryForeground">#000000</SolidColorBrush>
         
         <SolidColorBrush x:Key="PrimaryHoverBackground">#000000</SolidColorBrush>

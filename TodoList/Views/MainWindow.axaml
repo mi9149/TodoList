@@ -11,10 +11,17 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     
+    <Border Background="{DynamicResource PrimaryBackgroundColor2}">
     <Grid ColumnDefinitions="200,*"
-          ShowGridLines="True">
+          ShowGridLines="False">
+        
         <!-- Side bar -->
-        <StackPanel Grid.Column="0">
+        <Border Grid.Column="0"
+                Margin="15"
+                CornerRadius="13"
+                ClipToBounds="True"
+                Background="{DynamicResource PrimaryBackgroundColor1}">
+        <StackPanel>
             
             <!-- Add Category button -->
             <IconButton 
@@ -50,9 +57,16 @@
                     </ListBox.ItemTemplate>
             </ListBox>
         </StackPanel>
+            </Border>
         
-        <Grid Grid.Column="1"
-              RowDefinitions="Auto, Auto, *">
+        <Border Grid.Column="1"
+                Background="{DynamicResource PrimaryBackgroundColor1}"
+                Margin="0 15 15 15"
+                CornerRadius="13"
+                >
+        <Grid RowDefinitions="Auto, Auto, *"
+              Background="{DynamicResource PrimaryBackgroundColor1}"
+              Margin="10">
             <!-- View Mode Button -->
             <StackPanel Orientation="Horizontal" Spacing="10">
                 <Button Classes="small" Content="Kanban"/>
@@ -70,6 +84,7 @@
             <ContentControl Grid.Row="2"  Content="{Binding CurrentPage}"/>
             
         </Grid>
+            </Border>
         
         <!-- Dialog window -->
         <Grid Name="DialogOverlay"
@@ -84,4 +99,6 @@
                 />
         </Grid>
     </Grid>
+    </Border>
+        
 </Window>
