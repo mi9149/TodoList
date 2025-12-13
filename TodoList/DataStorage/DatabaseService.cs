@@ -41,16 +41,16 @@ public class DatabaseService(ApplicationDbContext context) : IDisposable
             .Where(t => t.CategoryId ==categoryId)
             .ToList();
 
-        if (todoItems.Count == 0)
-        {
-            var newItem = new TodoItemsDataModel(title: "Untitled1", categoryId: categoryId);
-            _context.TodoItems.Add(newItem);
-            _context.SaveChanges();
-            
-            todoItems = _context.TodoItems
-                .Where(t => t.CategoryId == categoryId)
-                .ToList();
-        }
+        // if (todoItems.Count == 0)
+        // {
+        //     var newItem = new TodoItemsDataModel(title: "Untitled1", categoryId: categoryId);
+        //     _context.TodoItems.Add(newItem);
+        //     _context.SaveChanges();
+        //     
+        //     todoItems = _context.TodoItems
+        //         .Where(t => t.CategoryId == categoryId)
+        //         .ToList();
+        // }
         return todoItems;
     }
 

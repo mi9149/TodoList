@@ -11,9 +11,8 @@
     <Design.DataContext>
         <vm:ListViewModel/>
     </Design.DataContext>
-    
-    <Grid RowDefinitions=" *, Auto"
-          x:Name = "Root">
+
+    <Grid RowDefinitions=" *, Auto" x:Name = "Root" >
         <ScrollViewer Grid.Row="0" >
             <ItemsControl ItemsSource ="{Binding TodoItems}">
                 
@@ -22,7 +21,8 @@
                         <Grid ColumnDefinitions="*, Auto">
                             <CheckBox Content="{Binding Title}" 
                                       FontFamily="{DynamicResource Freesentation-4}"
-                                      IsChecked="{Binding IsChecked}"/>
+                                      IsChecked="{Binding IsChecked}"
+                                      Margin="10 0 0  0"/>
                             
                             <Button Grid.Column="1" Command="{Binding #Root.((vm:ListViewModel)DataContext).RemoveTodoItemCommand }"
                                     CommandParameter="{Binding .}">
@@ -49,8 +49,10 @@
                 <KeyBinding Command="{Binding #Root.((vm:ListViewModel)DataContext).AddTodoItemCommand}" Gesture="Enter" />
                     
             </TextBox.KeyBindings>
-            </TextBox>
+        </TextBox>
     </Grid>
+
+
     
     
     

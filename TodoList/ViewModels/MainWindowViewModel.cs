@@ -1,11 +1,11 @@
 ﻿
+using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.EntityFrameworkCore;
 using TodoList.DataStorage;
-using TodoList.DataStorage.DataModels;
 using TodoList.Dialog;
 
 
@@ -32,18 +32,36 @@ public partial class MainWindowViewModel : ViewModelBase, IDialogProvider
 
     private readonly ListViewModel _listViewPage;
 
+    /// <summary>
+    /// Design-time only constructor
+    /// </summary>
+#pragma warning disable CS8618, CS9264
     public MainWindowViewModel()
     {
-        _databaseFactory = new DatabaseFactory(()=>new DatabaseService(new ApplicationDbContext()));
-        _dialogService = new DialogService();
+        if (Design.IsDesignMode)
+        {
+            _databaseFactory = new DatabaseFactory(() => new DatabaseService(new ApplicationDbContext()));
+            _dialogService = new DialogService();
+            Categories =
+            [
+                new CategoryViewModel { ColorHex = "#D0FFB5", Title = "New Category" },
+                new CategoryViewModel { ColorHex = "#FE6366", Title = "Edit Category" }
+            ];
+
+            _listViewPage = new ListViewModel();
+            SelectedCategory = Categories[0];
+            CurrentPage = _listViewPage;
+        }
+
+
     }
+#pragma warning restore CS8618, CS9264
 
     public MainWindowViewModel(DatabaseFactory databaseFactory, DialogService dialogService )
     {
-        _databaseFactory = databaseFactory;
-        _dialogService = dialogService;
+        _databaseFactory = databaseFactory ?? throw new ArgumentNullException(nameof(databaseFactory));
+        _dialogService = dialogService ?? throw new ArgumentNullException(nameof(dialogService));
         
-       
         using var dbContext = _databaseFactory.GetDatabaseService();
         dbContext.ApplyMigration();
         Categories.Clear();
@@ -63,12 +81,7 @@ public partial class MainWindowViewModel : ViewModelBase, IDialogProvider
         Categories.Clear();
         foreach (var c in list)
         {
-            Categories.Add(new CategoryViewModel
-            {
-                Id = c.Id,
-                Title = c.Title,
-                ColorHex = c.ColorHex
-            });
+            Categories.Add(new CategoryViewModel(c));
         }
       
     }

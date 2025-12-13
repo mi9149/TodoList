@@ -1,7 +1,7 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:ClassModifier="internal">
-    
+        
         <Design.PreviewWith>
             <Border>
                 <ListBox>
@@ -28,17 +28,16 @@
         
         <!--  PointerOver state  -->
         <Style Selector="^:pointerover">
-            
             <Setter Property="Foreground" Value="{DynamicResource PrimaryHoverBackground}" />
-            
+            <Setter Property="Background" Value="{DynamicResource PrimaryHoverForeground}" />
         </Style>
-        
         
         <!--  Selected state  -->
         <Style Selector="^:selected">
-            <Setter Property="Background" Value="{DynamicResource PrimaryHoverBackground}" />
+            <Setter Property="Background" Value="{DynamicResource PrimeSelectedBackground}" />
+            <Setter Property="Foreground" Value="{DynamicResource PrimeSelectedForeground}" />
         </Style>
         
     </ControlTheme>
     
-</ResourceDictionary>
+</ResourceDictionary> 

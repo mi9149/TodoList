@@ -4,14 +4,16 @@
     <option name="projectPerEditor">
       <map>
         <entry key="TodoList/App.axaml" value="TodoList/TodoList.csproj" />
+        <entry key="TodoList/Controls/Button.axaml" value="TodoList/TodoList.csproj" />
+        <entry key="TodoList/Controls/IconButton.axaml" value="TodoList/TodoList.csproj" />
         <entry key="TodoList/Controls/ListBoxItem.axaml" value="TodoList/TodoList.csproj" />
         <entry key="TodoList/Style/TextBox.axaml" value="TodoList/TodoList.csproj" />
+        <entry key="TodoList/Styles/Button.axaml" value="TodoList/TodoList.csproj" />
         <entry key="TodoList/Styles/Category.axaml" value="TodoList/TodoList.csproj" />
         <entry key="TodoList/Styles/ListBox.axaml" value="TodoList/TodoList.csproj" />
         <entry key="TodoList/Styles/TextBlock.axaml" value="TodoList/TodoList.csproj" />
         <entry key="TodoList/Views/AddCategoryDialogView.axaml" value="TodoList/TodoList.csproj" />
         <entry key="TodoList/Views/ListView.axaml" value="TodoList/TodoList.csproj" />
-        <entry key="TodoList/Views/ListView.axaml.axaml" value="TodoList/TodoList.csproj" />
         <entry key="TodoList/Views/MainWindow.axaml" value="TodoList/TodoList.csproj" />
       </map>
     </option>

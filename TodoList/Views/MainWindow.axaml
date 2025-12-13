@@ -11,15 +11,18 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     
-    
-    
     <Grid ColumnDefinitions="200,*"
           ShowGridLines="True">
         <!-- Side bar -->
         <StackPanel Grid.Column="0">
+            
             <!-- Add Category button -->
-            <Button Content="+"
-                    Command="{Binding AddCategoryCommand}"/>
+            <IconButton 
+                IconText="&#xE2F8;"
+                Command="{Binding AddCategoryCommand}"
+                       >
+            </IconButton>
+            
             
             <!-- Area that show Categories -->
              <ListBox 
@@ -30,7 +33,7 @@
                
                     <ListBox.ItemTemplate >
                         <DataTemplate DataType="vm:CategoryViewModel"  >
-                            <Grid ColumnDefinitions="Auto, *">
+                            <Grid ColumnDefinitions="Auto, *" ColumnSpacing="10">
                                 <!-- Category Color -->
                                 <Ellipse 
                                     Width="13"
@@ -38,32 +41,35 @@
                                     Fill="{Binding ColorHex}" />
                             
                                 <!-- Show category name -->
-                                <Border  Grid.Column="1"
-                                         Classes="Category-title"
+                                <Border Grid.Column="1"
                                          CornerRadius="4">
                                     <TextBlock   Text="{Binding Title}"/>
                                 </Border>
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-               
             </ListBox>
         </StackPanel>
         
-        <StackPanel Grid.Column="1">
+        <Grid Grid.Column="1"
+              RowDefinitions="Auto, Auto, *">
             <!-- View Mode Button -->
             <StackPanel Orientation="Horizontal" Spacing="10">
-                <Button Content="Kanban"/>
-                <Button Content="List"/>
+                <Button Classes="small" Content="Kanban"/>
+                <Button Classes="small" Content="List"/>
             </StackPanel>
             
             <!-- Category Name -->
-            <Label VerticalAlignment="Stretch" Content="{Binding SelectedCategory.Title}"/>
+            <TextBlock Grid.Row="1" VerticalAlignment="Stretch" Text="{Binding SelectedCategory.Title}"
+                   FontFamily="{DynamicResource Freesentation-6}" FontSize="30" FontWeight="Bold"
+                   Foreground="{Binding SelectedCategory.ColorHex}"
+                   Margin="10 10"
+                   LetterSpacing="2"/>
             
             <!-- Item View -->
-            <ContentControl VerticalAlignment="Stretch" Content="{Binding CurrentPage}"/>
+            <ContentControl Grid.Row="2"  Content="{Binding CurrentPage}"/>
             
-        </StackPanel>
+        </Grid>
         
         <!-- Dialog window -->
         <Grid Name="DialogOverlay"

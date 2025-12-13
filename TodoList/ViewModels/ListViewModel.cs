@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.InteropServices.JavaScript;
 using System.Threading.Tasks;
+using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using TodoList.DataStorage;
@@ -26,13 +27,28 @@ public partial class ListViewModel:ViewModelBase
     
     public ObservableCollection<ListItemViewModel>TodoItems { get; } = [];
 
-    public ListViewModel(): this(new DatabaseFactory(()=>new DatabaseService(new ApplicationDbContext())), new CategoryDataModel()) 
+    /// <summary>
+    /// Design-time only constructor
+    /// </summary>
+#pragma warning disable CS8618, CS9264
+    public ListViewModel(): this(new DatabaseFactory(()=>new DatabaseService(new ApplicationDbContext())), new CategoryDataModel())
     {
+        if (Design.IsDesignMode)
+        {
+            TodoItems =
+            [
+                new ListItemViewModel { Title = "Making delicious pasta for dinner", IsChecked = true },
+                new ListItemViewModel { Title = "Going to dentist for root canal treatment", IsChecked = false }
+            ];
+        }
     }
-
+        
+#pragma warning restore CS8618, CS9264
+    
     public ListViewModel(CategoryDataModel category) : this(
         new DatabaseFactory(() => new DatabaseService(new ApplicationDbContext())), category)
     {
+    
     }
     
     public ListViewModel(DatabaseFactory databaseFactory, CategoryDataModel category )

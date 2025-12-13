@@ -1,0 +1,31 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Classes="Category-title">
+            <ListBox>
+                <ListBoxItem>Item 1</ListBoxItem>
+                <ListBoxItem>item 2</ListBoxItem>
+                <ListBoxItem>item 3</ListBoxItem>
+            </ListBox>
+        </Border>
+    
+    </Design.PreviewWith>
+    
+    
+    <Style Selector="Border.Category-title">
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+
+    <!-- Hover -->
+    <Style Selector="ListBoxItem:pointerover Border.Category-title">
+        <Setter Property="Background" Value="{DynamicResource PrimaryHoverBackground}"/>
+    </Style>
+
+    <!-- Selected -->
+    <Style Selector="ListBoxItem:selected Border.Category-title">
+        <Setter Property="Background" Value="{DynamicResource PrimaryHoverBackground}"/>
+    </Style>
+    
+    
+    
+</Styles>

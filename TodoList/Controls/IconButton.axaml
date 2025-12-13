@@ -1,0 +1,108 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:ClassModifier="internal">
+  
+  <Design.PreviewWith>
+    <Border Padding="20">
+      <StackPanel Spacing="20">
+        <IconButton Classes="smaller" IconText="&#xe7f2;" Content="IconButton" />
+        <IconButton Classes = "small" IconText="&#xe7f2;" Content="IconButton" />
+        <IconButton IconText="&#xe7f2;" Content="IconButton" />
+        <Button Content="Normal Button" />
+      </StackPanel>
+    </Border>
+  </Design.PreviewWith>
+
+  <ControlTheme x:Key="{x:Type IconButton}" TargetType="IconButton">
+    <Setter Property="Background" Value="{DynamicResource ButtonBackground}" />
+    <Setter Property="Foreground" Value="{DynamicResource ButtonForeground}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource ButtonBorderBrush}" />
+    <Setter Property="BorderThickness" Value="{DynamicResource ButtonBorderThemeThickness}" />
+    <Setter Property="CornerRadius" Value="{DynamicResource ControlCornerRadius}" />
+    <Setter Property="Padding" Value="{DynamicResource ButtonPadding}" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="RenderTransform" Value="none" />
+    <Setter Property="Transitions">
+      <Transitions>
+        <TransformOperationsTransition Property="RenderTransform" Duration="0:0:.075" />
+      </Transitions>
+    </Setter>
+
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                Padding="{TemplateBinding Padding}">
+          <StackPanel Orientation="Horizontal">
+            <Border Margin="-3 0 -4 0">
+              <Label Name="IconLabel"
+                     VerticalAlignment="Center"
+                     Foreground="{Binding $parent[IconButton].Foreground}"
+                     Content="{Binding $parent[IconButton].IconText}"/>
+            </Border>
+            <ContentPresenter Name="PART_ContentPresenter" Content="{TemplateBinding Content}">
+              <ContentPresenter.ContentTemplate>
+                <DataTemplate DataType="x:Object">
+                  <ContentControl
+                    VerticalAlignment="Center"
+                    Margin="8 0 0 0"
+                    Foreground="{Binding $parent[IconButton].Foreground}"
+                    DataContext="{Binding $parent[IconButton].DataContext}"
+                    Content="{Binding $parent[IconButton].Content}" />
+                </DataTemplate>
+              </ContentPresenter.ContentTemplate>
+            </ContentPresenter>
+          </StackPanel>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+    
+    <Style Selector="^ /template/ Label#IconLabel">
+      <Setter Property="FontFamily" Value="{DynamicResource PhosphorFill}" />
+    </Style>
+    
+    <!-- Button Styles -->
+    <Style Selector="^:is(Button)">
+      <Setter Property="FontSize" Value="18"></Setter>
+      <Setter Property="CornerRadius" Value="10"></Setter>
+      <Setter Property="FontWeight" Value="Bold"></Setter>
+      <Setter Property="Padding" Value="9 5.5 9.2 5.5"></Setter>
+      <Setter Property="BorderThickness" Value="{DynamicResource PrimaryBorderThickness}"></Setter>
+      <!-- <Setter Property="Effect"> -->
+      <!--   <DropShadowEffect BlurRadius="5" Opacity="0.15"></DropShadowEffect> -->
+      <!-- </Setter> -->
+    </Style>
+    
+    <!-- Small button -->
+    <Style Selector="^:is(Button).small">
+      <Setter Property="FontSize" Value="14"></Setter>
+      <Setter Property="CornerRadius" Value="6"></Setter>
+      <Setter Property="Padding" Value="6 2 6 3"></Setter>
+    </Style>
+
+    <!-- Smaller button -->
+    <Style Selector="^:is(Button).smaller">
+      <Setter Property="FontSize" Value="12"></Setter>
+      <Setter Property="CornerRadius" Value="5"></Setter>
+      <Setter Property="Padding" Value="3 0 3 2"></Setter>
+    </Style>
+
+    <!-- button (hover) -->
+    <Style Selector="^:is(Button):pointerover">
+      <Setter Property="Background" Value="{DynamicResource ButtonBackgroundPointerOver}"></Setter>
+      <Setter Property="Foreground" Value="{DynamicResource ButtonForegroundPointerOver}"></Setter>
+    </Style>
+    
+    <!-- button (pressed) -->
+    <Style Selector="^:is(Button):pressed">
+      <Setter Property="Background" Value="{DynamicResource ButtonBackgroundPressed}"></Setter>
+      <Setter Property="Foreground" Value="{DynamicResource ButtonForegroundPressed}"></Setter>
+    </Style>
+    
+    
+    
+  </ControlTheme>
+</ResourceDictionary>

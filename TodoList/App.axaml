@@ -14,7 +14,6 @@
         <FluentTheme />
         <!-- <StyleInclude Source="Styles/TextBlock.axaml"></StyleInclude> -->
         <StyleInclude Source="Styles/ListBox.axaml"></StyleInclude>
-        <!-- <StyleInclude Source="Styles/Category.axaml" /> -->
     </Application.Styles>
              
              
@@ -22,26 +21,45 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <MergeResourceInclude Source="/Controls/ListBoxItem.axaml" />
+                <MergeResourceInclude Source="/Controls/IconButton.axaml" />
+                <MergeResourceInclude Source="/Controls/Button.axaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
+        
         <Thickness x:Key="PrimaryBorderThickness">2</Thickness>
         
-        <Color x:Key="PrimaryBackgroundColor1">#f3f3f3</Color>
-        <Color x:Key="PrimaryBackgroundColor2">#151E3E</Color>
+        <SolidColorBrush x:Key="PrimaryBackgroundColor1">#FBFBFB</SolidColorBrush>
+        <SolidColorBrush x:Key="PrimaryForeground">#000000</SolidColorBrush>
+        
+        <SolidColorBrush x:Key="PrimaryHoverBackground">#000000</SolidColorBrush>
+        <SolidColorBrush x:Key="PrimaryHoverForeground">#FDF0FE</SolidColorBrush>
+        
+        <SolidColorBrush x:Key="PrimeSelectedForeground">#FBFBFB</SolidColorBrush>
+        <SolidColorBrush x:Key="PrimeSelectedBackground">#A357BB</SolidColorBrush>
+        
+        <SolidColorBrush x:Key="ButtonBackground">#FBFBFB</SolidColorBrush>
+        <SolidColorBrush x:Key="ButtonForeground">#000000</SolidColorBrush>
+        
+        <SolidColorBrush x:Key="ButtonBackgroundPointerOver">#FDF0FE</SolidColorBrush>
+        <SolidColorBrush x:Key="ButtonForegroundPointerOver">#A357BB</SolidColorBrush>
+        
+        <SolidColorBrush x:Key="ButtonBackgroundPressed">#A357BB</SolidColorBrush>
+        <SolidColorBrush x:Key="ButtonForegroundPressed">#FBFBFB</SolidColorBrush>
         
         
-        <SolidColorBrush x:Key="PrimaryHoverBackground">#6BE6D2</SolidColorBrush>
-        <SolidColorBrush x:Key="PrimaryHoverForeground">#000000</SolidColorBrush>
         
         <StreamGeometry x:Key="DeleteIconData">M6,19 C6,20.1 6.9,21 8,21 H16 C17.1,21 18,20.1 18,19 V7 H6 V19 Z
             M19,4 H15.5 L14.5,3 H9.5 L8.5,4 H5 V6 H19 V4 Z</StreamGeometry>
         <StreamGeometry x:Key="AcceptIconData"> M9,16.2 L4.8,12 3.4,13.4 L9,19 L21,7 L19.6,5.6 L9,16.2 Z</StreamGeometry>
         
-        <FontFamily x:Key="BlackHanSans">/Assets/Font/BlackHanSans-Regular.ttf#Black Han Sans</FontFamily>
-        <FontFamily x:Key="Consola">/Assets/Font/consola.ttf#consola</FontFamily>
-        <FontFamily x:Key="Freesentation-4">/Assets/Font/Freesentation-4Regular.ttf#Freesentation</FontFamily>
-        <FontFamily x:Key="Freesentation-5">/Assets/Font/Freesentation-5Medium.ttf#Freesentation</FontFamily>
-        <FontFamily x:Key="Freesentation-6">/Assets/Font/Freesentation-6SemiBold.ttf.ttf#Freesentation</FontFamily>
+        <FontFamily x:Key="BlackHanSans">/Assets/Fonts/BlackHanSans-Regular.ttf#Black Han Sans</FontFamily>
+        <FontFamily x:Key="Consola">/Assets/Fonts/consola.ttf#consola</FontFamily>
+        <FontFamily x:Key="Freesentation-4">/Assets/Fonts/Freesentation-4Regular.ttf#Freesentation</FontFamily>
+        <FontFamily x:Key="Freesentation-5">/Assets/Fonts/Freesentation-5Medium.ttf#Freesentation</FontFamily>
+        <FontFamily x:Key="Freesentation-6">/Assets/Fonts/Freesentation-6SemiBold.ttf#Freesentation</FontFamily>
+        <FontFamily x:Key="Phosphor">/Assets/Fonts/Phosphor.ttf#Phosphor</FontFamily>
+        <FontFamily x:Key="PhosphorFill">/Assets/Fonts/Phosphor-Fill.ttf#Phosphor-Fill</FontFamily>
+        <FontFamily x:Key="FontAwesome6FreeSolid900">/Assets/Fonts/Font Awesome 6 Free-Solid-900.otf#Font Awesome 6 Free Solid</FontFamily>
         
         
     </Application.Resources>

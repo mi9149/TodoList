@@ -39,7 +39,7 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<TodoItemsDataModel>()
             .HasOne(t => t.Category) 
             .WithMany(c => c.TodoItems)
-            .HasForeignKey(t => t.CategoryID)
+            .HasForeignKey(t => t.CategoryId)
             .OnDelete(DeleteBehavior.Cascade);
 
 

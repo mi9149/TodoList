@@ -4,11 +4,14 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
+using Avalonia.Metadata;
 using Microsoft.Extensions.DependencyInjection;
 using TodoList.DataStorage;
 using TodoList.Dialog;
 using TodoList.ViewModels;
 using TodoList.Views;
+
+[assembly: XmlnsDefinition("https://github.com/avaloniaui", "TodoList.Controls")]
 
 namespace TodoList;
 

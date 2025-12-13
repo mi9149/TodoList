@@ -58,9 +58,9 @@
            
                         
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="20">
-                        <Button Content="{Binding CancelText}"
+                        <Button Classes="small" Content="{Binding CancelText}"
                                 Command="{Binding CancelCommand}"/>
-                        <Button Content="{Binding ConfirmText}"
+                        <Button Classes="small" Content="{Binding ConfirmText}"
                                 Command="{Binding ConfirmCommand}"/>
                 </StackPanel>
                         
