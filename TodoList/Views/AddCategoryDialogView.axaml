@@ -22,7 +22,7 @@
                 Margin="10">
                 
                 <Border.Effect>
-                        <DropShadowEffect Color="{DynamicResource PrimaryBackgroundColor2}"
+                        <DropShadowEffect Color="{DynamicResource ShadowColor}"
                                           />
                 </Border.Effect>
                 

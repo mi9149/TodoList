@@ -27,6 +27,7 @@
         </ResourceDictionary>
         
         <Thickness x:Key="PrimaryBorderThickness">2</Thickness>
+        <Color x:Key="ShadowColor">#F3F3F3</Color>
         
         <SolidColorBrush x:Key="PrimaryBackgroundColor1">#FBFBFB</SolidColorBrush>
         <SolidColorBrush x:Key="PrimaryBackgroundColor2">#F3F3F3</SolidColorBrush>

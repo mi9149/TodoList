@@ -16,6 +16,7 @@ namespace TodoList.ViewModels;
 /// </summary>
 public partial class AddCategoryDialogViewModel(DatabaseFactory databaseFactory) : DialogViewModel
 {
+    
     [ObservableProperty] 
     [NotifyCanExecuteChangedFor(nameof(ConfirmCommand))]
     private string _title = string.Empty;
@@ -29,12 +30,20 @@ public partial class AddCategoryDialogViewModel(DatabaseFactory databaseFactory)
     [ObservableProperty] private bool _confirmed;
     // private readonly DatabaseFactory _databaseFactory = databaseFactory;
     // private string? _newCategoryName;
+
+    public AddCategoryDialogViewModel() : this( new DatabaseFactory(() => new DatabaseService(new ApplicationDbContext())))
+    {
+        if (Design.IsDesignMode)
+        {
+        }
+    }
     
     
 
     private bool CanAddCategory() => !string.IsNullOrWhiteSpace(Title);
     
     [RelayCommand(CanExecute = nameof(CanAddCategory))]
+    
     public void Confirm()
     {
         using var dbContext = databaseFactory.GetDatabaseService();
