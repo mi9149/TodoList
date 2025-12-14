@@ -23,6 +23,7 @@
                 <MergeResourceInclude Source="/Controls/ListBoxItem.axaml" />
                 <MergeResourceInclude Source="/Controls/IconButton.axaml" />
                 <MergeResourceInclude Source="/Controls/Button.axaml" />
+                <MergeResourceInclude Source="/Controls/ColorRadioButton.axaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
         
@@ -47,6 +48,27 @@
         
         <SolidColorBrush x:Key="ButtonBackgroundPressed">#A357BB</SolidColorBrush>
         <SolidColorBrush x:Key="ButtonForegroundPressed">#FBFBFB</SolidColorBrush>
+        
+        <SolidColorBrush x:Key="ColorBrush1">#FB2C36</SolidColorBrush>
+        <SolidColorBrush x:Key="ColorBrush2">#FF6900</SolidColorBrush>
+        <SolidColorBrush x:Key="ColorBrush3">#F0B100</SolidColorBrush>
+        <SolidColorBrush x:Key="ColorBrush4">#7CCF00</SolidColorBrush>
+        <SolidColorBrush x:Key="ColorBrush5">#00C950</SolidColorBrush>
+        <SolidColorBrush x:Key="ColorBrush6">#00BC7D</SolidColorBrush>
+        <SolidColorBrush x:Key="ColorBrush7">#00BBA7</SolidColorBrush>
+        <SolidColorBrush x:Key="ColorBrush8">#00B8DB</SolidColorBrush>
+        <SolidColorBrush x:Key="ColorBrush9">#00A6F4</SolidColorBrush>
+        <SolidColorBrush x:Key="ColorBrush10">#2B7FFF</SolidColorBrush>
+        <SolidColorBrush x:Key="ColorBrush11">#615FFF</SolidColorBrush>
+        <SolidColorBrush x:Key="ColorBrush12">#8E51FF</SolidColorBrush>
+        <SolidColorBrush x:Key="ColorBrush13">#AD46FF</SolidColorBrush>
+        <SolidColorBrush x:Key="ColorBrush14">#E12AFB</SolidColorBrush>
+        <SolidColorBrush x:Key="ColorBrush15">#F6339A</SolidColorBrush>
+        <SolidColorBrush x:Key="ColorBrush16">#FF2056</SolidColorBrush>
+        
+        
+        
+        
         
         
         

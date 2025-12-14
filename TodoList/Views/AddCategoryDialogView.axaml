@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        MinWidth="300" 
+        MinWidth="350" 
         x:Class="TodoList.Views.AddCategoryDialogView"
         x:DataType="vm:AddCategoryDialogViewModel"
         >
@@ -18,41 +18,50 @@
                 Background="{DynamicResource PrimaryBackgroundColor1}"
                 BorderThickness="{DynamicResource PrimaryBorderThickness}"
                 CornerRadius="20"
-                ClipToBounds="False"
+                ClipToBounds="True"
                 Margin="10">
                 
                 <Border.Effect>
-                        <DropShadowEffect Color="{DynamicResource ShadowColor}"
-                                          />
+                        <DropShadowEffect Color="{DynamicResource ShadowColor}"/>
                 </Border.Effect>
                 
-                
-                
-                <StackPanel Spacing="20">
+                <StackPanel Spacing="10">
                         <Grid RowDefinitions="Auto, *" ColumnDefinitions=" Auto, *">
                                 
                                 <TextBlock Grid.Row="0" Grid.Column="0" 
                                            Text="이름 : " 
-                                           Margin="20"/>
+                                           Margin="20 30"/>
                                 <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Title}" 
-                                         Margin="20"/>
+                                         Margin="0 25   55 25"
+                                         Height="10"/>
                                 
 
                                 <TextBlock Grid.Row="1" Grid.Column="0" 
                                            Text="색상 : " 
                                            Margin="20, 0"/>
+                                
                                 <!-- IsCheckedChanged="OnColorSelected" -->
-                                <StackPanel Grid.Row="1" Grid.Column="1">
-                                        <RadioButton GroupName="CategoryColor" Content="Color1" Foreground="#EB4E3D"
-                                                     Tag="#EB4E3D"
-                                                      Checked="OnColorSelected"/>
-                                        <RadioButton GroupName="CategoryColor" Content="Color2" Foreground="#5DC466"
-                                                     Tag="#5DC466"
-                                                     Checked="OnColorSelected"/>
-                                        <RadioButton GroupName="CategoryColor" Content="Color3" Foreground="#3478F6"
-                                                     Tag="#3478F6"
-                                                     Checked="OnColorSelected"/>
-                                        
+                                <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical"  >
+                                        <StackPanel Orientation="Horizontal" Spacing="5">
+                                                <ColorRadioButton ColorBrush="{DynamicResource ColorBrush1}"  Checked="OnColorSelected"/>
+                                                <ColorRadioButton ColorBrush="{DynamicResource ColorBrush2}"  Checked="OnColorSelected"/>
+                                                <ColorRadioButton ColorBrush="{DynamicResource ColorBrush3}"  Checked="OnColorSelected"/>
+                                                <ColorRadioButton ColorBrush="{DynamicResource ColorBrush4}"  Checked="OnColorSelected"/>
+                                                <ColorRadioButton ColorBrush="{DynamicResource ColorBrush5}"  Checked="OnColorSelected"/>
+                                                <ColorRadioButton ColorBrush="{DynamicResource ColorBrush6}"  Checked="OnColorSelected"/>
+                                                <ColorRadioButton ColorBrush="{DynamicResource ColorBrush7}"  Checked="OnColorSelected"/>
+                                                <ColorRadioButton ColorBrush="{DynamicResource ColorBrush8}"  Checked="OnColorSelected"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Spacing="5">
+                                                <ColorRadioButton ColorBrush="{DynamicResource ColorBrush9}"  Checked="OnColorSelected"/>
+                                                <ColorRadioButton ColorBrush="{DynamicResource ColorBrush10}"  Checked="OnColorSelected"/>
+                                                <ColorRadioButton ColorBrush="{DynamicResource ColorBrush11}"  Checked="OnColorSelected"/>
+                                                <ColorRadioButton ColorBrush="{DynamicResource ColorBrush12}"  Checked="OnColorSelected"/>
+                                                <ColorRadioButton ColorBrush="{DynamicResource ColorBrush13}"  Checked="OnColorSelected"/>
+                                                <ColorRadioButton ColorBrush="{DynamicResource ColorBrush14}"  Checked="OnColorSelected"/>
+                                                <ColorRadioButton ColorBrush="{DynamicResource ColorBrush15}"  Checked="OnColorSelected"/>
+                                                <ColorRadioButton ColorBrush="{DynamicResource ColorBrush16}"  Checked="OnColorSelected"/>
+                                        </StackPanel>
                                 </StackPanel>
                         </Grid>
            

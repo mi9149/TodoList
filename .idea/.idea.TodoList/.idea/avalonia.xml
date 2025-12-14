@@ -5,6 +5,7 @@
       <map>
         <entry key="TodoList/App.axaml" value="TodoList/TodoList.csproj" />
         <entry key="TodoList/Controls/Button.axaml" value="TodoList/TodoList.csproj" />
+        <entry key="TodoList/Controls/ColorRadioButton.axaml" value="TodoList/TodoList.csproj" />
         <entry key="TodoList/Controls/IconButton.axaml" value="TodoList/TodoList.csproj" />
         <entry key="TodoList/Controls/ListBoxItem.axaml" value="TodoList/TodoList.csproj" />
         <entry key="TodoList/Style/TextBox.axaml" value="TodoList/TodoList.csproj" />

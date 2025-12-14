@@ -1,5 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using TodoList.Controls;
 using TodoList.ViewModels;
 
 namespace TodoList.Views;
@@ -13,9 +14,9 @@ public partial class AddCategoryDialogView : UserControl
 
     private void OnColorSelected(object? sender, RoutedEventArgs e)
     {
-        if (sender is RadioButton rb && DataContext is AddCategoryDialogViewModel vm)
+        if (sender is ColorRadioButton rb && DataContext is AddCategoryDialogViewModel vm)
         {
-            vm.ColorHex  = rb?.Foreground.ToString();
+            vm.ColorHex  = rb?.ColorBrush.ToString();
         }
         
     }
